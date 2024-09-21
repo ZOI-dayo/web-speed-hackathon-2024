@@ -19,6 +19,7 @@ const main = async () => {
   JSON.parse(await (await fetch("/api/v1/books")).text()).forEach(
       (r) => (bookCache[r.id] = r)
   );
+  console.log(bookCache);
 
   $(document).ready(() => {
     if (window.location.pathname.startsWith('/admin')) {
