@@ -13,13 +13,8 @@ import { registerServiceWorker } from './utils/registerServiceWorker';
 
 const main = async () => {
   await registerServiceWorker();
-  // await preloadImages();
-  const bookCache = {};
-  console.log((await (await fetch("/api/v1/books")).text()));
-  JSON.parse(await (await fetch("/api/v1/books")).text()).forEach(
-      (r) => (bookCache[r.id] = r)
-  );
-  console.log(bookCache);
+  await preloadImages();
+  console.log("a")
 
   $(document).ready(() => {
     if (window.location.pathname.startsWith('/admin')) {
@@ -29,7 +24,7 @@ const main = async () => {
         $('#root').get(0)!,
         <SWRConfig value={{ revalidateIfStale: true, revalidateOnFocus: false, revalidateOnReconnect: false }}>
           <BrowserRouter>
-            <ClientApp bookCache={bookCache} />
+            <ClientApp />
           </BrowserRouter>
         </SWRConfig>,
       );

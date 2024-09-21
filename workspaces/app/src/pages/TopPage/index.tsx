@@ -17,7 +17,7 @@ import { getDayOfWeekStr } from '../../lib/date/getDayOfWeekStr';
 
 import { CoverSection } from './internal/CoverSection';
 
-const TopPage: React.FC = ({bookCache}) => {
+const TopPage: React.FC = () => {
   const todayStr = getDayOfWeekStr(moment());
   const { data: release } = useRelease({ params: { dayOfWeek: todayStr } });
   const { data: featureList } = useFeatureList({ query: {} });
@@ -26,6 +26,10 @@ const TopPage: React.FC = ({bookCache}) => {
   const pickupA11yId = useId();
   const rankingA11yId = useId();
   const todayA11yId = useId();
+
+  console.log(useBookList())
+  const { data: allBookList } = useBookList();
+  console.log(allBookList);
 
   return (
     <Flex align="flex-start" direction="column" gap={Space * 2} justify="center" pb={Space * 2}>
@@ -41,7 +45,7 @@ const TopPage: React.FC = ({bookCache}) => {
           <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
             <Flex align="stretch" direction="row" gap={Space * 2} justify="flex-start">
               {_.map(featureList, (feature) => (
-                <FeatureCard key={feature.id} bookCache={bookCache} bookId={feature.book.id} />
+                <FeatureCard key={feature.id} bookId={feature.book.id} />
               ))}
             </Flex>
           </Box>
@@ -57,7 +61,7 @@ const TopPage: React.FC = ({bookCache}) => {
           <Box maxWidth="100%" overflowX="hidden" overflowY="hidden">
             <Flex align="center" as="ul" direction="column" justify="center">
               {_.map(rankingList, (ranking) => (
-                <RankingCard key={ranking.id} bookCache={bookCache} bookId={ranking.book.id} />
+                <RankingCard key={ranking.id} bookId={ranking.book.id} />
               ))}
             </Flex>
           </Box>
@@ -73,7 +77,7 @@ const TopPage: React.FC = ({bookCache}) => {
           <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
             <Flex align="stretch" gap={Space * 2} justify="flex-start">
               {_.map(release.books, (book) => (
-                <BookCard key={book.id} bookCache={bookCache} bookId={book.id} />
+                <BookCard key={book.id} bookId={book.id} />
               ))}
             </Flex>
           </Box>
@@ -83,10 +87,10 @@ const TopPage: React.FC = ({bookCache}) => {
   );
 };
 
-const TopPageWithSuspense: React.FC = ({bookCache}) => {
+const TopPageWithSuspense: React.FC = () => {
   return (
     <Suspense fallback={null}>
-      <TopPage bookCache={bookCache} />
+      <TopPage />
     </Suspense>
   );
 };
