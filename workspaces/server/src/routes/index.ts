@@ -1,5 +1,6 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
+import { compress } from 'hono/compress'
 import { HTTPException } from 'hono/http-exception';
 import { secureHeaders } from 'hono/secure-headers';
 
@@ -24,6 +25,7 @@ app.use(
     origin: (origin) => origin,
   }),
 );
+app.use(compress())
 app.use(compressMiddleware);
 app.use(cacheControlMiddleware);
 
