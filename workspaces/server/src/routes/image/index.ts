@@ -82,9 +82,9 @@ app.get(
   async (c) => {
     const { globby } = await import('globby');
 
-    const { ext: reqImgExt, name: reqImgId } = path.parse(c.req.valid('param').imageFile);
+    const { name: reqImgId } = path.parse(c.req.valid('param').imageFile);
 
-    const resImgFormat = c.req.valid('query').format ?? reqImgExt.slice(1);
+    const resImgFormat = c.req.valid('query').format ?? 'webp';
 
     if (!isSupportedImageFormat(resImgFormat)) {
       throw new HTTPException(501, { message: `Image format: ${resImgFormat} is not supported.` });
