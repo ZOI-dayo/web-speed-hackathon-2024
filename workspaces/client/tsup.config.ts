@@ -35,7 +35,7 @@ export default defineConfig(async (): Promise<Options[]> => {
           global: 'globalThis',
         };
         options.publicPath = '/';
-        options.minify = true;
+        options.minify = false;
       },
       esbuildPlugins: [
         polyfillNode({

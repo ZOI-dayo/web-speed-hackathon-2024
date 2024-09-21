@@ -30,11 +30,13 @@ async function onFetch(request: Request): Promise<Response> {
   // サーバーの負荷を分散するために Jitter 処理をいれる
   await jitter();
 
+  // console.log("fetch request", request.url);
   const res = await fetch(request);
 
   if (res.headers.get('Content-Type') === 'image/jxl') {
     return transformJpegXLToBmp(res);
   } else {
+    // console.log(res);
     return res;
   }
 }

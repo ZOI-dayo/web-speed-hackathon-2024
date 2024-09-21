@@ -6,6 +6,9 @@ const createAxiosInstance = () => {
     headers: {
       'Content-Type': 'application/json',
     },
+    timeout: 60000,
+    maxBodyLength: Infinity,
+    maxContentLength: Infinity,
   });
 
   return instance;

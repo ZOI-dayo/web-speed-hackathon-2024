@@ -49,8 +49,9 @@ type Props = {
 
 const FeatureCard: React.FC<Props> = ({ bookId }) => {
   // const { data: book } = useBook({ params: { bookId } });
-  const { data: books } = useBookList({ query: {} });
-  const book = books.find(e => e.id === bookId)!;
+  const { data: books } = useBookList();
+  // console.log("Feature", typeof books)
+  const book = (books as Array) .find(e => e.id === bookId);
   const imageUrl = useImage({ height: 96, imageId: book.image.id, width: 96 });
   const authorImageUrl = useImage({ height: 32, imageId: book.author.image.id, width: 32 });
 

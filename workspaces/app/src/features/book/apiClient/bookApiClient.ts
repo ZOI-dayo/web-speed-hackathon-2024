@@ -26,6 +26,7 @@ export const bookApiClient: BookApiClient = {
     const response = await apiClient.get<GetBookListResponse>(inject('/api/v1/books', {}), {
       params: query,
     });
+    // console.log("bookApiClient fetchList response: ", response);
     return response.data;
   },
   fetchList$$key: (options) => ({

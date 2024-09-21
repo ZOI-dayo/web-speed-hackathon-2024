@@ -22,7 +22,7 @@ export async function preloadImages() {
         Object.assign(link, {
           as: 'image',
           crossOrigin: 'anonymous',
-          fetchPriority: 'high',
+          fetchPriority: 'low',
           href: imagePath,
           onerror: resolve,
           onload: resolve,

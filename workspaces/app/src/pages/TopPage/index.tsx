@@ -14,6 +14,7 @@ import { Spacer } from '../../foundation/components/Spacer';
 import { Text } from '../../foundation/components/Text';
 import { Color, Space, Typography } from '../../foundation/styles/variables';
 import { getDayOfWeekStr } from '../../lib/date/getDayOfWeekStr';
+import { useBookList } from '../../features/book/hooks/useBookList';
 
 import { CoverSection } from './internal/CoverSection';
 
@@ -27,9 +28,13 @@ const TopPage: React.FC = () => {
   const rankingA11yId = useId();
   const todayA11yId = useId();
 
-  console.log(useBookList())
+  // console.log("TopPage/index.tsx", useBookList({ query: {} }))
   const { data: allBookList } = useBookList();
-  console.log(allBookList);
+  // console.log("TopPage/index.tsx", "allBookList", allBookList);
+  // console.log("TopPage/index.tsx", "allBookList type: ", typeof allBookList);
+  // console.log("TopPage/index.tsx", "release", release);
+  // console.log("TopPage/index.tsx", "featureList", featureList);
+  // console.log("TopPage/index.tsx", "rankingList", rankingList);
 
   return (
     <Flex align="flex-start" direction="column" gap={Space * 2} justify="center" pb={Space * 2}>

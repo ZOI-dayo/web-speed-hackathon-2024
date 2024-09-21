@@ -44,8 +44,9 @@ type Props = {
 const RankingCard: React.FC<Props> = ({ bookId }) => {
   // const { data: book } = useBook({ params: { bookId } });
   const { data: books } = useBookList({ query: {} });
-  console.log(books);
-  const book = books.find(e => e.id === bookId)!;
+  // console.log("RankingCard", books as Array);
+  // console.log("success")
+  const book = (books as Array).find(e => e.id === bookId);
 
   const imageUrl = useImage({ height: 96, imageId: book.image.id, width: 96 });
   const authorImageUrl = useImage({ height: 32, imageId: book.author.image.id, width: 32 });
