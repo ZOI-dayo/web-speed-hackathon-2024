@@ -1,13 +1,8 @@
 import { useSetAtom } from 'jotai';
-import React, { useId } from 'react';
+import React, { useId, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { DialogContentAtom } from '../atoms/DialogContentAtom';
-import { COMPANY } from '../constants/Company';
-import { CONTACT } from '../constants/Contact';
-import { OVERVIEW } from '../constants/Overview';
-import { QUESTION } from '../constants/Question';
-import { TERM } from '../constants/Term';
 import { Color, Space, Typography } from '../styles/variables';
 
 import { Box } from './Box';
@@ -39,6 +34,41 @@ export const Footer: React.FC = () => {
 
   const updateDialogContent = useSetAtom(DialogContentAtom);
 
+  const [termState, setTermState] = useState('loading...');
+  useEffect(() => {
+    fetch('/assets/contents/term.txt')
+      .then((response) => response.text())
+      .then((text) => setTermState(text));
+  }, []);
+
+  const [contactState, setContactState] = useState('loading...');
+  useEffect(() => {
+    fetch('/assets/contents/contact.txt')
+      .then((response) => response.text())
+      .then((text) => setContactState(text));
+  }, []);
+
+  const [companyState, setCompanyState] = useState('loading...');
+  useEffect(() => {
+    fetch('/assets/contents/company.txt')
+      .then((response) => response.text())
+      .then((text) => setCompanyState(text));
+  }, []);
+
+  const [overviewState, setOverviewState] = useState('loading...');
+  useEffect(() => {
+    fetch('/assets/contents/overview.txt')
+      .then((response) => response.text())
+      .then((text) => setOverviewState(text));
+  }, []);
+
+  const [questionState, setQuestionState] = useState('loading...');
+  useEffect(() => {
+    fetch('/assets/contents/question.txt')
+      .then((response) => response.text())
+      .then((text) => setQuestionState(text));
+  }, []);
+
   const handleRequestToTermDialogOpen = () => {
     updateDialogContent(
       <_Content aria-labelledby={termDialogA11yId} role="dialog">
@@ -47,7 +77,7 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {TERM}
+          {termState}
         </Text>
       </_Content>,
     );
@@ -61,7 +91,7 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {CONTACT}
+          {contactState}
         </Text>
       </_Content>,
     );
@@ -75,7 +105,7 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {QUESTION}
+          {questionState}
         </Text>
       </_Content>,
     );
@@ -89,7 +119,7 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {COMPANY}
+          {companyState}
         </Text>
       </_Content>,
     );
@@ -103,7 +133,7 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {OVERVIEW}
+          {overviewState}
         </Text>
       </_Content>,
     );
