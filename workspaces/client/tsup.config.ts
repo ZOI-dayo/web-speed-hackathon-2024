@@ -35,6 +35,7 @@ export default defineConfig(async (): Promise<Options[]> => {
           global: 'globalThis',
         };
         options.publicPath = '/';
+        options.minify = true;
       },
       esbuildPlugins: [
         polyfillNode({
@@ -43,8 +44,8 @@ export default defineConfig(async (): Promise<Options[]> => {
           },
           polyfills: {
             events: true,
-            fs: true,
-            path: true,
+            fs: false,
+            path: false,
           },
         }),
       ],
@@ -54,14 +55,14 @@ export default defineConfig(async (): Promise<Options[]> => {
         '.wasm': 'binary',
       },
       metafile: true,
-      minify: false,
+      minify: true,
       outDir: OUTPUT_DIR,
       platform: 'browser',
       shims: true,
-      sourcemap: 'inline',
-      splitting: false,
+      sourcemap: false,
+      splitting: true,
       target: ['chrome58', 'firefox57', 'safari11', 'edge18'],
-      treeshake: false,
+      treeshake: true,
     },
   ];
 });

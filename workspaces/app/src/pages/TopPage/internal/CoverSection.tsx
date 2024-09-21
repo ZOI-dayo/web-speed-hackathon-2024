@@ -6,6 +6,8 @@ import { Text } from '../../../foundation/components/Text';
 import { Color, Radius, Space, Typography } from '../../../foundation/styles/variables';
 
 import { HeroImage } from './HeroImage';
+import { Image } from '../../../foundation/components/Image';
+import { IMAGE_SRC } from './ImageSrc';
 
 const _Wrapper = styled.div`
   width: calc(100% + ${Space * 4}px);
@@ -32,7 +34,8 @@ const _SearchLink = styled(Link)`
 export const CoverSection: React.FC = () => {
   return (
     <_Wrapper>
-      <HeroImage />
+      {/*<HeroImage />*/}
+      <Image alt="Cyber TOON" loading="lazy" src="/assets/halo.png" style={{ aspectRatio: 16 / 9, width: '100%' }} />
       <_SearchLink href="/search">
         <SvgIcon color={Color.MONO_A} height={24} type="Search" width={24} />
         <Text color={Color.MONO_A} typography={Typography.NORMAL16}>
