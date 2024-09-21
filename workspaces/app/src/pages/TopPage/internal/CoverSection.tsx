@@ -35,7 +35,7 @@ export const CoverSection: React.FC = () => {
   return (
     <_Wrapper>
       {/*<HeroImage />*/}
-      <Image alt="Cyber TOON" loading="lazy" src="/assets/halo.png" style={{ aspectRatio: 16 / 9, width: '100%' }} />
+      <Image alt="Cyber TOON" loading="lazy" src="/assets/halo.webp" style={{ aspectRatio: 16 / 9, width: '100%' }} />
       <_SearchLink href="/search">
         <SvgIcon color={Color.MONO_A} height={24} type="Search" width={24} />
         <Text color={Color.MONO_A} typography={Typography.NORMAL16}>

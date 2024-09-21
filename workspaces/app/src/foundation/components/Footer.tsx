@@ -1,6 +1,7 @@
 import { useSetAtom } from 'jotai';
-import React, { useId, useState, useEffect } from 'react';
+import React, { useId } from 'react';
 import styled from 'styled-components';
+import useSWR, { preload } from 'swr';
 
 import { DialogContentAtom } from '../atoms/DialogContentAtom';
 import { Color, Space, Typography } from '../styles/variables';
@@ -34,53 +35,33 @@ export const Footer: React.FC = () => {
 
   const updateDialogContent = useSetAtom(DialogContentAtom);
 
-  const [termState, setTermState] = useState('loading...');
-  useEffect(() => {
-    fetch('/assets/contents/term.txt')
-      .then((response) => response.text())
-      .then((text) => setTermState(text));
-  }, []);
+  // async function fetcher(key: string) {
+  //   return await (await fetch(key)).text();
+  // }
+  const fetcher = (url) => fetch(url).then((res) => res.text());
 
-  const [contactState, setContactState] = useState('loading...');
-  useEffect(() => {
-    fetch('/assets/contents/contact.txt')
-      .then((response) => response.text())
-      .then((text) => setContactState(text));
-  }, []);
+  const Term = () => {
+    const { data } = useSWR('/assets/contents/term.txt', fetcher);
+    return <>{data}</>;
+  };
 
-  const [companyState, setCompanyState] = useState('loading...');
-  useEffect(() => {
-    fetch('/assets/contents/company.txt')
-      .then((response) => response.text())
-      .then((text) => setCompanyState(text));
-  }, []);
-
-  const [overviewState, setOverviewState] = useState('loading...');
-  useEffect(() => {
-    fetch('/assets/contents/overview.txt')
-      .then((response) => response.text())
-      .then((text) => setOverviewState(text));
-  }, []);
-
-  const [questionState, setQuestionState] = useState('loading...');
-  useEffect(() => {
-    fetch('/assets/contents/question.txt')
-      .then((response) => response.text())
-      .then((text) => setQuestionState(text));
-  }, []);
-
-  const handleRequestToTermDialogOpen = () => {
-    updateDialogContent(
+  const handleRequestToTermDialogOpen = async () => {
+    return updateDialogContent(
       <_Content aria-labelledby={termDialogA11yId} role="dialog">
         <Text as="h2" color={Color.MONO_100} id={termDialogA11yId} typography={Typography.NORMAL16}>
           利用規約
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {termState}
+          <Term />
         </Text>
       </_Content>,
     );
+  };
+
+  const Contact = () => {
+    const { data } = useSWR('/assets/contents/contact.txt', fetcher);
+    return <>{data}</>;
   };
 
   const handleRequestToContactDialogOpen = () => {
@@ -91,10 +72,15 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {contactState}
+          <Contact />
         </Text>
       </_Content>,
     );
+  };
+
+  const Question = () => {
+    const { data } = useSWR('/assets/contents/question.txt', fetcher);
+    return <>{data}</>;
   };
 
   const handleRequestToQuestionDialogOpen = () => {
@@ -105,10 +91,15 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {questionState}
+          <Question />
         </Text>
       </_Content>,
     );
+  };
+
+  const Company = () => {
+    const { data } = useSWR('/assets/contents/company.txt', fetcher);
+    return <>{data}</>;
   };
 
   const handleRequestToCompanyDialogOpen = () => {
@@ -119,10 +110,15 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {companyState}
+          <Company />
         </Text>
       </_Content>,
     );
+  };
+
+  const Overview = () => {
+    const { data } = useSWR('/assets/contents/overview.txt', fetcher);
+    return <>{data}</>;
   };
 
   const handleRequestToOverviewDialogOpen = () => {
@@ -133,7 +129,7 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {overviewState}
+          <Overview />
         </Text>
       </_Content>,
     );
