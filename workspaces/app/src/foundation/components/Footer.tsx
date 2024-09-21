@@ -1,7 +1,7 @@
 import { useSetAtom } from 'jotai';
 import React, { useId } from 'react';
 import styled from 'styled-components';
-import useSWR, { preload } from 'swr';
+import useSWR from 'swr';
 
 import { DialogContentAtom } from '../atoms/DialogContentAtom';
 import { Color, Space, Typography } from '../styles/variables';
@@ -138,7 +138,7 @@ export const Footer: React.FC = () => {
   return (
     <Box as="footer" backgroundColor={Color.Background} p={Space * 1}>
       <Flex align="flex-start" direction="column" gap={Space * 1} justify="flex-start">
-        <img alt="Cyber TOON" src="/assets/cyber-toon.svg" />
+        <img alt="Cyber TOON" src="/assets/cyber-toon.svg"/>
         <Flex align="start" direction="row" gap={Space * 1.5} justify="center">
           <_Button disabled={!isClient} onClick={handleRequestToTermDialogOpen}>
             利用規約
@@ -157,6 +157,11 @@ export const Footer: React.FC = () => {
           </_Button>
         </Flex>
       </Flex>
+      <link as="fetch" crossOrigin="anonymous" href="/assets/contents/term.txt" rel="prefetch"/>
+      <link as="fetch" crossOrigin="anonymous" href="/assets/contents/contact.txt" rel="prefetch"/>
+      <link as="fetch" crossOrigin="anonymous" href="/assets/contents/question.txt" rel="prefetch"/>
+      <link as="fetch" crossOrigin="anonymous" href="/assets/contents/company.txt" rel="prefetch"/>
+      <link as="fetch" crossOrigin="anonymous" href="/assets/contents/overview.txt" rel="prefetch"/>
     </Box>
   );
 };
