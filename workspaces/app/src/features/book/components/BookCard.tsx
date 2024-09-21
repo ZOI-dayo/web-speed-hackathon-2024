@@ -36,8 +36,9 @@ type Props = {
   bookId: string;
 };
 
-const BookCard: React.FC<Props> = ({ bookId }) => {
-  const { data: book } = useBook({ params: { bookId } });
+const BookCard: React.FC<Props> = ({ bookId, bookCache }) => {
+  // const { data: book } = useBook({ params: { bookId } });
+  const book = bookCache[bookId];
 
   const imageUrl = useImage({ height: 128, imageId: book.image.id, width: 192 });
   const authorImageUrl = useImage({ height: 32, imageId: book.author.image.id, width: 32 });

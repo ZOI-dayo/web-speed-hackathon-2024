@@ -23,11 +23,11 @@ const _BackToTopButton = styled(Link)`
   background-color: transparent;
 `;
 
-export const Router: React.FC = () => {
+export const Router: React.FC = ({bookCache}) => {
   return (
     <Routes>
       <Route element={<CommonLayout />} path={'/'}>
-        <Route element={<TopPage />} path={''} />
+        <Route element={<TopPage bookCache={bookCache} />} path={''} />
       </Route>
       <Route
         element={
