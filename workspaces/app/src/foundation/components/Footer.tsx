@@ -11,6 +11,11 @@ import { Button } from './Button';
 import { Flex } from './Flex';
 import { Spacer } from './Spacer';
 import { Text } from './Text';
+import {TERM} from "../constants/Term";
+import {CONTACT} from "../constants/Contact";
+import {QUESTION} from "../constants/Question";
+import {COMPANY} from "../constants/Company";
+import {OVERVIEW} from "../constants/Overview";
 
 const _Button = styled(Button)`
   color: ${Color.MONO_A};
@@ -42,7 +47,7 @@ export const Footer: React.FC = () => {
 
   const Term = () => {
     const { data } = useSWR('/assets/contents/term.txt', fetcher);
-    return <>{data}</>;
+    return <>{data ?? TERM}</>;
   };
 
   const handleRequestToTermDialogOpen = async () => {
@@ -61,7 +66,7 @@ export const Footer: React.FC = () => {
 
   const Contact = () => {
     const { data } = useSWR('/assets/contents/contact.txt', fetcher);
-    return <>{data}</>;
+    return <>{data ?? CONTACT}</>;
   };
 
   const handleRequestToContactDialogOpen = () => {
@@ -80,7 +85,7 @@ export const Footer: React.FC = () => {
 
   const Question = () => {
     const { data } = useSWR('/assets/contents/question.txt', fetcher);
-    return <>{data}</>;
+    return <>{data ?? QUESTION}</>;
   };
 
   const handleRequestToQuestionDialogOpen = () => {
@@ -99,7 +104,7 @@ export const Footer: React.FC = () => {
 
   const Company = () => {
     const { data } = useSWR('/assets/contents/company.txt', fetcher);
-    return <>{data}</>;
+    return <>{data ?? COMPANY}</>;
   };
 
   const handleRequestToCompanyDialogOpen = () => {
@@ -118,7 +123,7 @@ export const Footer: React.FC = () => {
 
   const Overview = () => {
     const { data } = useSWR('/assets/contents/overview.txt', fetcher);
-    return <>{data}</>;
+    return <>{data ?? OVERVIEW}</>;
   };
 
   const handleRequestToOverviewDialogOpen = () => {
@@ -157,11 +162,6 @@ export const Footer: React.FC = () => {
           </_Button>
         </Flex>
       </Flex>
-      <link as="fetch" crossOrigin="anonymous" href="/assets/contents/term.txt" rel="prefetch"/>
-      <link as="fetch" crossOrigin="anonymous" href="/assets/contents/contact.txt" rel="prefetch"/>
-      <link as="fetch" crossOrigin="anonymous" href="/assets/contents/question.txt" rel="prefetch"/>
-      <link as="fetch" crossOrigin="anonymous" href="/assets/contents/company.txt" rel="prefetch"/>
-      <link as="fetch" crossOrigin="anonymous" href="/assets/contents/overview.txt" rel="prefetch"/>
     </Box>
   );
 };
