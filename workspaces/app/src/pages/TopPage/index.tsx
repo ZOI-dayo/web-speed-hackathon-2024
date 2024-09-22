@@ -29,7 +29,7 @@ const TopPage: React.FC = () => {
   const todayA11yId = useId();
 
   // console.log("TopPage/index.tsx", useBookList({ query: {} }))
-  const { data: allBookList } = useBookList();
+  // const { data: allBookList } = useBookList();
   // console.log("TopPage/index.tsx", "allBookList", allBookList);
   // console.log("TopPage/index.tsx", "allBookList type: ", typeof allBookList);
   // console.log("TopPage/index.tsx", "release", release);

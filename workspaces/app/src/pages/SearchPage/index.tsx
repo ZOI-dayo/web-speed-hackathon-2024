@@ -9,7 +9,8 @@ import { Input } from './internal/Input';
 import { SearchResult } from './internal/SearchResult';
 
 const SearchPage: React.FC = () => {
-  const { data: books } = useBookList({ query: {} });
+  const { data: books } = useBookList();
+  if(books == null) return <>Loading...</>
 
   const searchResultsA11yId = useId();
 

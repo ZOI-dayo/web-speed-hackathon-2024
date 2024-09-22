@@ -33,7 +33,8 @@ type Props = {
 
 export const BookListItem: React.FC<Props> = ({ bookId }) => {
   const { data: bookList } = useBookList();
-  const book = bookList.find((book) => book.id === bookId);
+  if(bookList == null) return <>Loading...</>
+  const book = (bookList as Array).find((book) => book.id === bookId);
 
   const imageUrl = useImage({ height: 64, imageId: book.image.id, width: 64 });
 

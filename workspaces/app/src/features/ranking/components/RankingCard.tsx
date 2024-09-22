@@ -43,7 +43,8 @@ type Props = {
 
 const RankingCard: React.FC<Props> = ({ bookId }) => {
   // const { data: book } = useBook({ params: { bookId } });
-  const { data: books } = useBookList({ query: {} });
+  const { data: books } = useBookList();
+  if(books == null) return <>Loading...</>
   // console.log("RankingCard", books as Array);
   // console.log("success")
   const book = (books as Array).find(e => e.id === bookId);
